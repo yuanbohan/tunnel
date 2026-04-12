@@ -1,11 +1,5 @@
 # tunnel
 
-Public distribution repository for the `tunnel` CLI.
-
-This repository hosts the installer script, release metadata, and versioned release assets. It is the public download surface for `tunnel`.
-
-## Install
-
 Install the latest release:
 
 ```sh
@@ -18,44 +12,23 @@ Install a specific version:
 curl -fsSL https://raw.githubusercontent.com/yuanbohan/tunnel/main/install.sh | VERSION=v0.1.2 sh
 ```
 
-Upgrade to the current latest release:
-
-```sh
-curl -fsSL https://raw.githubusercontent.com/yuanbohan/tunnel/main/install.sh | sh
-```
-
-The installer:
-
-- detects the current operating system and CPU architecture
-- downloads the matching archive from this repository's releases
-- verifies the published SHA256 checksum
-- installs `tunnel` to `~/.local/bin/tunnel`
-
-If `~/.local/bin` is not on your `PATH`, add it before running `tunnel`.
-
-## Verify
-
-Check the installed version:
-
-```sh
-tunnel --version
-```
-
-## Supported Platforms
+Supported targets:
 
 - macOS Apple Silicon (`darwin/arm64`)
 - macOS Intel (`darwin/amd64`)
 - Linux x86_64 (`linux/amd64`)
 - Linux ARM64 (`linux/arm64`)
 
-## Releases
+The installer writes `tunnel` to `~/.local/bin/tunnel`.
 
-- Versioned archives and checksum files are published on the [Releases](https://github.com/yuanbohan/tunnel/releases) page.
-- `latest.json` points the installer at the current recommended release.
-- `install.sh` is the stable installation entrypoint.
+Verify the installed version:
 
-## Repository Contents
+```sh
+tunnel --version
+```
 
-- `install.sh`: public installer script
-- `latest.json`: latest release metadata consumed by the installer
-- GitHub Releases: versioned archives and checksums
+Compatibility:
+
+- Tunnel and Relay are guaranteed compatible within the same compatibility line.
+- For `v1+`, the compatibility line is the major version. `tunnel v1.4.2` is compatible with `relay v1.9.0`.
+- For pre-`v1`, the compatibility line is `0.minor`. `tunnel v0.1.7` is compatible with `relay v0.1.3`, but not guaranteed with `relay v0.2.0`.
